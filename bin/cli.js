@@ -1,31 +1,21 @@
 #!/usr/bin/env node
-'use strict';
+import { program } from 'commander';
+import chalk from 'chalk';
+import { createRequire } from 'module';
 
-const { program } = require('commander');
-const { createProject } = require('../lib/core');
+const require = createRequire(import.meta.url);
 const { version } = require('../package.json');
 
-program
-  .name('project-generator')
-  .description('CLI для генерации проектов с ESLint, Prettier и Jest')
-  .version(version, '-v, --version');
+program.name('project-generator').description('CLI для генерации проектов').version(version);
 
-program
-  .command('create <project-name>')
-  .description('Создать новый проект')
-  .option('-t, --type <type>', 'Тип проекта (react, nextjs, express, vanilla)')
-  .option('--ts, --typescript', 'Использовать TypeScript')
-  .action(async (projectName, options) => {
-    try {
-      await createProject(projectName, options);
-      console.log(`✅ Проект ${projectName} успешно создан!`);
-    } catch (error) {
-      console.error('❌ Ошибка:', error.message);
-      process.exit(1);
-    }
-  });
-
-program.parseAsync(process.argv).catch((err) => {
-  console.error('❌ Critical error:', err);
-  process.exit(1);
+program.command('create <project-name>').action(async (projectName) => {
+  try {
+    const { default: createProject } = await import('../lib/core.js');
+    await createProject(projectName);
+  } catch (error) {
+    console.error(chalk.red('❌ Ошибка:'), error.message);
+    process.exit(1);
+  }
 });
+
+program.parseAsync(process.argv);

@@ -1,5 +1,6 @@
 {
   "name": "@865/project-generator",
+  "type": "module",
   "version": "1.0.0",
   "description": "CLI инструмент для генерации проектов с предустановленными настройками",
   "main": "bin/cli.js",
@@ -11,11 +12,11 @@
     "lib"
   ],
   "scripts": {
-  "lint": "eslint . --fix",
-  "format": "prettier --write .",
-  "prepare": "husky install",
-  "test": "jest --coverage"
-},
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "test": "jest --coverage"
+  },
   "engines": {
     "node": ">=16.0.0"
   },
@@ -24,7 +25,8 @@
     "commander": "^13.1.0",
     "ejs": "^3.1.10",
     "execa": "^9.5.2",
-    "inquirer": "^12.5.0"
+    "fs-extra": "^11.3.0",
+    "inquirer": "^9.3.7"
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
