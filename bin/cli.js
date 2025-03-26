@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import chalk from 'chalk';
-import { createRequire } from 'node:module';
+import { createRequire } from 'module';
+
 const require = createRequire(import.meta.url);
 const { version } = require('../package.json');
 
-// Правильный путь к core.js
+// Динамический импорт с правильными параметрами
 const { default: createProject } = await import('../lib/core.js');
 
 program
@@ -22,7 +23,7 @@ program
   .action(async (projectName) => {
     try {
       await createProject(projectName);
-      console.log(chalk.green(`✅ Проект ${projectName} успешно создан!`));
+      console.log(chalk.green('✅ Проект успешно создан!'));
     } catch (error) {
       console.error(chalk.red('❌ Ошибка:'), error.message);
       process.exit(1);
