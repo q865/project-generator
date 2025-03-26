@@ -15,9 +15,7 @@
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "test": "jest --coverage"
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-  },
+    "test": "jest --coverage",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -27,7 +25,7 @@
     "ejs": "^3.1.10",
     "execa": "^9.5.2",
     "fs-extra": "^11.3.0",
-    "inquirer": "^9.3.7"
+    "inquirer": "^9.3.7",
   },
   "devDependencies": {
     "@types/node": "^22.13.13",
