@@ -13,6 +13,7 @@ program
   .option('--typescript', 'Добавить TypeScript поддержку')
   .option('--eslint-prettier', 'Добавить ESLint + Prettier')
   .option('--jest', 'Добавить Jest для тестирования')
+  .option('--jest', 'Add Jest testing support', false)
   .action(async (projectName, options) => {
     try {
       const { default: createProject } = await import('../lib/core.js');
